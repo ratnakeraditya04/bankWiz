@@ -5,8 +5,8 @@ This is an application we created as a team of 3 people for past three months. W
 We have been assigned the Spiral Model to follow and we have been following it.
 
 WE, the team of three members me along with Karuna Sharma and Harsh Gaur have made this project.
-Karuna Sharma - All the FrontEnd part that you can see in it is the work of her.
-Me and Harsh Gaur have handled the BackEnd Part of this project.
+<a href = "https://github.com/Karunasharma09"> Karuna Sharma </a> - All the FrontEnd part that you can see in it is the work of her.
+Me and <a href = "https://github.com/Ch1efEag"> Harsh Gaur </a> have handled the BackEnd Part of this project.
 
 ## Quick Run -
 
@@ -14,8 +14,12 @@ To run this application on your local system follow the following steps in the o
 
 ```
 Open an empty repository in your local system.
+```
+```
 Open Git Bash in that location which you have opened.
-Run - git clone https://github.com/ratnakeraditya04/bankWiz.git
+```
+```
+Run - git clone https://github.com/ratnakeraditya04/bankWiz.git in terminal. 
 ```
 
 Next, after successfully cloning the repository -
