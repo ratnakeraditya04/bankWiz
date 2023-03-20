@@ -1,0 +1,32 @@
+Overview
+
+The spiral model is an iterative software development model that emphasizes the importance of risk analysis and management throughout the development process. This risk analysis document outlines the key risks associated with the development of a new software application using the spiral model and identifies strategies for managing those risks particularly associated during the development of transaction methodology in our BankWiz - An Online Banking Application. 
+
+Risk Identification
+
+The first step in risk analysis is identifying potential risks. Some of the key risks associated with the development of a new software application using the spiral model include:
+
+Technical Risks: These risks are associated with the technical aspects of software development, such as compatibility issues, inadequate system performance, and software reliability.
+		     There are a lot of possibilities for an error to happen technically, such as, Transaction Duplication, Unauthorised Transactions, System Failure or Data Entry error. 
+
+Requirements Risks: These risks are associated with inaccurate or incomplete requirements gathering, which can result in an application that does not meet the needs of the end-users.
+
+Risk Assessment
+The next step is to assess the potential impact of each risk and prioritize them based on their likelihood and severity. For example:
+
+Technical Risks: The impact of technical risks can be significant, as they can lead to system crashes, data loss, and security breaches. These risks should be prioritized and addressed early in the development process.
+
+Requirements Risks: Requirements risks can lead to a product that does not meet the needs of the end-users, which can result in low adoption rates and negative feedback. These risks should be addressed early in the development process through effective requirements gathering and validation.
+
+Risk Mitigation
+Once the risks have been identified and assessed, strategies for mitigating those risks should be developed. Some strategies for mitigating the risks associated with software development using the spiral model include:
+
+Technical Risks: Technical risks can be mitigated through effective testing, validation, and quality assurance processes. This includes using automated testing tools, performing code reviews, and conducting system testing to identify and address technical issues.
+
+Requirements Risks: Requirements risks can be mitigated through effective requirements gathering and validation. This includes involving end-users in the requirements gathering process, conducting user testing and feedback sessions, and using prototyping to validate requirements before development begins.
+
+
+
+Conclusion
+
+Risk analysis and management are critical components of the software development process, particularly when using the spiral model. By identifying potential risks, assessing their impact, and developing strategies for mitigating those risks, organizations can ensure that their software development projects are successful, on-time, and on-budget.
