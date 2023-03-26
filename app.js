@@ -128,11 +128,13 @@ app.post("/regi", async(req,res) => {
 		const password = req.body.password;
 		const user_email = await register.find({user_name: username});
 		// res.send(user_email);
-		console.log(user_email)
+		const data=user_email[0];
+		console.log(data);
 		console.log(password)
 		if(user_email[0].password == password){
 			//res.status(201).render("index")
 			accountNumber = user_email[0].accountNumber;
+			// console.log(accountNumber);
 			// console.log(user_email[0])
 			if(user_email[0].user_name == "admin") res.redirect("/admin")
 			else res.redirect("/user")

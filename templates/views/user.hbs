@@ -353,13 +353,14 @@
                 <div class="cardform">
                     <div class="card">
                         <h2>How much Amount do you want to deposit?</h2>
-                        <form action="">
+                        <p>
                             <label for="amount"> Amount:</label>
                             <input type="number" name="deposit" id="deposit">
                             <label for="amount"> Account number:</label>
                             <input type="number" name="account" id="account">
-                            <input type="submit" value="submit">
-                        </form>
+                            {{!-- <input type="submit" value="submit"> --}}
+                            <button onclick="send()">pressu me</button>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -369,13 +370,13 @@
                 <div class="cardform">
                     <div class="card">
                         <h2>How much Amount do you want to Withdraw?</h2>
-                        <form action="/api/account/withdraw" method="POST">
+                        <p>
                             <label for="amount"> Amount</label>
                             <input type="number" name="amount" id="withdraw">
                             <label for="amount"> Account number:</label>
-                            <input type="number" name="accountNumber" id="account" value={{accountNumber}}>
-                            <input type="submit" value="submit">
-                        </form>
+                            <input type="number" name="accountNumber" id="account1" value={{accountNumber}}>
+                             <button onclick="withdrawl()">pressu me</button>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -399,6 +400,46 @@
 
         </div>
     </div>
+    <script>
+    const send= async()=>{
+            let deposit = document.querySelector('#deposit');
+            let account = document.querySelector('#account');
+            console.log(deposit.value);
+            const result= await fetch('http://localhost:3000/api/account/deposit',{
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "accountNumber":account.value,
+                     "amount": deposit.value,
+                })
+            })
+            const data= await result.json();
+            console.log(data);
+            alert(JSON.stringify({"account": data.account}));
+
+    }
+    const withdrawl= async()=>{
+            let deposit = document.querySelector('#withdraw');
+            let account = document.querySelector('#account1');
+            console.log(deposit.value);
+            const result= await fetch('http://localhost:3000/api/account/withdraw',{
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "accountNumber":account.value,
+                     "amount": deposit.value,
+                })
+            })
+            const data= await result.json();
+            console.log(data);
+            alert(JSON.stringify({"account": data.account}));
+
+    }
+    </script>
     <script src="user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
