@@ -9,16 +9,6 @@ router.post('/deposit',async (req,res)=>{
     
     try{
         let {accountNumber, amount} = req.body;
-        // let account = await Account.find(accountNumber)
-
-        //     var newBalance = await account.balance + amount;
-        //     account =  await Account.updateOne(
-        //         {accountNumber: account.accountNumber}, 
-        //         {"$set": 
-        //             {"balance": newBalance}
-        //         }
-        //     )
-            
             let account  = await Account.findOneAndUpdate(
                 { accountNumber: accountNumber }, 
                 { $inc: { balance: amount } }, 
@@ -53,18 +43,6 @@ router.post('/withdraw',async (req,res)=>{
         }
         
         console.log(account)
-        // if(account.balance>= amount){
-        //     console.log("hh");
-        //     // let newBal = account.balance - amount;
-        //     account  = await Account.findOneAndUpdate(
-        //         { accountNumber: accountNumber }, 
-        //         { $inc: { balance: -1*amount } }, 
-        //         {new: true },
-        //     )
-        // }else{
-        //     throw "Insufficient balance";
-        // }
-            
         success = true;
         return res.status(200).json({success,account});
 

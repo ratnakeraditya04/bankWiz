@@ -10,6 +10,9 @@ const contact = require("./src/models/contact");
 const port = process.env.PORT || 3000;
 const static = path.join(__dirname,'public'); 
 const template = path.join(__dirname,'templates/views');
+const bodyParser = require('body-parser')
+let accountNumber = ""
+app.use(bodyParser.urlencoded({ extended: false }));
 connectToMongo();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -41,7 +44,9 @@ app.get("/contact", (req,res) => {
 	res.render("contact")
 });
 app.get("/user", (req,res) => {
-	res.render("user")
+	// var accountNumber = localStorage.getItem('accountNumber')
+	console.log(accountNumber)
+	res.render("user", {accountNumber:accountNumber})
 });
 app.get("/admin", (req,res) => {
 	res.render("admin")
@@ -127,6 +132,8 @@ app.post("/regi", async(req,res) => {
 		console.log(password)
 		if(user_email[0].password == password){
 			//res.status(201).render("index")
+			accountNumber = user_email[0].accountNumber;
+			// console.log(user_email[0])
 			if(user_email[0].user_name == "admin") res.redirect("/admin")
 			else res.redirect("/user")
 		}else{

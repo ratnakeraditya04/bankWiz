@@ -6,7 +6,7 @@ We have been assigned the Spiral Model to follow and we have been following it.
 
 WE, the team of three members me along with Karuna Sharma and Harsh Gaur have made this project.
 <a href = "https://github.com/Karunasharma09"> Karuna Sharma </a> - All the FrontEnd part that you can see in it is the work of her.
-Me and <a href = "https://github.com/Ch1efEag"> Harsh Gaur </a> have handled the BackEnd Part of this project.
+Me and <a href = "https://github.com/Ch1efEag"> Harsh Gaur </a> have extensively handled the BackEnd Part of this project.
 
 ## Quick Run -
 
