@@ -9,14 +9,16 @@ const Transaction = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'account'
     },
+    type:{
+        type: String,
+        required: true,
+    },
     amount: {
         type: Number
     },
     date: {
         type: Date
     }
-    
-  
 
 })
 const transaction = new mongoose.model("transaction", Transaction);

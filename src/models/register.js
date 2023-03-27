@@ -39,14 +39,12 @@ const BankSchema = new mongoose.Schema({
 
     gender: {type:String, possibleValues: ['male','female','others'],
     required : true },
-    accounts: 
+    accountNumber: 
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'account'
         }
-    
-  
-
 })
+
 const register = new mongoose.model("register", BankSchema);
 module.exports = register;

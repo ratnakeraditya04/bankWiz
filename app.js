@@ -57,37 +57,31 @@ app.post("/register", async(req,res) => {
 		const password = req.body.password;
 		const cpassword = req.body.conf_password;
 		if(password === cpassword){
-			const accountNumber = 100000 + Math.floor(Math.random() * 900000);
+			const accountNum = 100000 + Math.floor(Math.random() * 900000);
 			const newAccount = new account({
-				accountNumber,
+				accountNumber:accountNum,
+
 			});
-			const accountSaved = await newAccount.save();
-			console.log(accountSaved)
-	
-			const registerUser = new register({
-				name : req.body.name,
-				address: req.body.address,
-				contact : req.body.contact,
-				dob : req.body.dob,
-				user_name:req.body.username,
-				password: req.body.password,
-				conf_password:req.body.conf_password,
-				gender:req.body.gender,
+			newAccount.save().then((newAccount)=>{
+				console.log(newAccount._id);
+				const registerUser = new register({
+					name : req.body.name,
+					address: req.body.address,
+					contact : req.body.contact,
+					dob : req.body.dob,
+					user_name:req.body.username,
+					password: req.body.password,
+					conf_password:req.body.conf_password,
+					gender:req.body.gender,
+					accountNumber: newAccount,
+				})
+				
+				
+				registerUser.save().then((reg)=>{
+					res.redirect("/signup")
+				})				//res.status(201).render(index.hbs)
 			})
 			
-			
-			const registered = await registerUser.save();
-			console.log(registered)
-			if(registered){
-				let cc = await register.findByIdAndUpdate(
-					registered._id,
-					{ "account" : accountSaved._id },
-					{"new": true},
-				)
-			}
-			console.log(registered)
-			//res.status(201).render(index.hbs)
-			res.redirect("/signup")
 		}
 		else{
 			res.send("passwords are not matching");	
@@ -130,13 +124,18 @@ app.post("/regi", async(req,res) => {
 		console.log(password)
 		if(user_email[0].password == password){
 			//res.status(201).render("index")
-			accountNumber = user_email[0].accountNumber;
+			// accountNumber = user_email[0].accountNumber;
 			// console.log(accountNumber);
 			// console.log(user_email[0])
-			if(user_email[0].user_name == "admin") res.redirect("/admin")
-			else res.redirect("/user")
+			console.log("hi");
+			if(user_email[0].user_name == "admin") res.json({
+				message:"/admin"
+			})
+			else res.json({
+				message:"/user"
+			})
 		}else{
-			res.send("Passwords are not matching")
+			res.json({error:"Passwords are not matching"})
 		}
 
 	}catch(error){

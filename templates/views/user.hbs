@@ -139,7 +139,7 @@
                 <div class="cardBox">
                     <div class="card">
                         <div>
-                            <div class="numbers">875654</div>
+                            <div class="numbers" id="acc_no">924416</div>
                             <div class="cardName">Account No. </div>
                         </div>
 
@@ -150,7 +150,7 @@
 
                     <div class="card">
                         <div>
-                            <div class="numbers">3456</div>
+                            <div class="numbers" id="balance">277</div>
                             <div class="cardName">Balance (in Rs) </div>
                         </div>
 
@@ -161,7 +161,7 @@
 
                     <div class="card">
                         <div>
-                            <div class="numbers">8</div>
+                            <div class="numbers" id="transaction_done">3</div>
                             <div class="cardName">Transfers Done</div>
                         </div>
 
@@ -398,10 +398,32 @@
                 </div>
             </div>
             <!-- ======================= log out ================== -->
-
         </div>
     </div>
     <script>
+        const my_load= async()=>{
+           const data= window.localStorage.getItem('user_name');
+           console.log(data);  
+           const result= await fetch('http://localhost:3000/api/account/get_data',{
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "username":data,
+                })
+            })  
+            const my_data= await result.json();
+            {{!-- console.log(my_data);       --}}
+            let account = document.querySelector('#acc_no');
+            let balance = document.querySelector('#balance');
+            let transactions =document.querySelector('#transaction_done');
+            {{!-- console.log(account.innerHTML); --}}
+            account.innerHTML=my_data.accountNumber;
+            balance.innerHTML=my_data.balance;
+            transactions.innerHTML=my_data.transactions;
+            }
+    my_load();
     const send= async()=>{
             let deposit = document.querySelector('#deposit');
             let account = document.querySelector('#account');
@@ -438,12 +460,11 @@
             const data= await result.json();
             console.log(data);
             alert(JSON.stringify({"account": data.account}));
-
     }
+    
     </script>
     <script src="user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>

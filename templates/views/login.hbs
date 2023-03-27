@@ -12,18 +12,19 @@
 <body>
     <div class="container">
         <div class="signin-signup">
-            <form action ="/regi" method = "POST" class="sign-in-form">
+            <form class="sign-in-form">
                 <h2 class="title">Sign in</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Username" name = "username">
+                    <input type="text" placeholder="Username" name = "username" id="user_n">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" name = "password">
+                    <input type="password" placeholder="Password" name = "password" id="pass_n">
                 </div>
-                <input type="submit" value="Login" class="btn">
+                <button class="btn" onclick=(my_fun())>Login</button>
             </form>
+            <button class="btn" onclick=(my_fun())>gogo</button>
             <form action ="/register" method = "POST" class="sign-up-form">
                 <h2 class="title">Sign up</h2>
                 <div class="input-field">
@@ -84,6 +85,34 @@
         </div>
     </div>
     <script src="app.js"></script>
+    <script>
+        const my_fun= async()=>{
+            let username = document.querySelector('#user_n');
+            let password = document.querySelector('#pass_n');
+            console.log(username.value);
+            const result= await fetch('http://localhost:3000/regi',{
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "username":username.value,
+                     "password": password.value,
+                })
+            })
+            const data= await result.json();
+            console.log(data);
+            if(data.error){
+                alert(JSON.stringify({"error": data.error}))
+            }
+            else{
+                window.localStorage.setItem("user_name",username.value);
+                window.location.href = `http://localhost:3000${data.message}` ;
+            }
+            {{!-- alert(JSON.stringify({"account": data})); --}}
+
+    }
+    </script>
 </body>
 
 </html>

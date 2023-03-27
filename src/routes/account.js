@@ -1,9 +1,20 @@
 const express = require('express');
 const router = express.Router();
-
+const register = require('../models/register');
 const Account = require('../models/account');
 
 //ROUTE 1: Add an event using POST: api/event/addevent Require authentication
+router.post('/get_data',async(req,res)=>{
+//    const user_name = await register.find({user_name: username});
+   const {username}=req.body;
+   register.findOne({user_name: username}).populate("accountNumber","accountNumber balance transactions").then((user)=>{
+    console.log(user);//.accountNumber.accountNumber
+    res.json({accountNumber:user.accountNumber.accountNumber,balance:user.accountNumber.balance,transactions:user.accountNumber.transactions.length})
+   })
+   console.log(username);
+   
+
+})
 router.post('/deposit',async (req,res)=>{
     let success = false;
     

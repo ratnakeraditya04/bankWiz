@@ -3,7 +3,6 @@ const Account = new mongoose.Schema({
     accountNumber : {
         type:String,
         required : true,
-        unique:true
     },
    
     balance : {
