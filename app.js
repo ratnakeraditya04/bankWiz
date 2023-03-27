@@ -92,8 +92,6 @@ app.post("/register", async(req,res) => {
 		else{
 			res.send("passwords are not matching");	
 		}
-
-		
 	}catch(error){
 		res.status(400).send(error);
 	}
@@ -114,7 +112,6 @@ app.post("/contact", async(req,res) => {
 			const registered = await registerUser.save();
 			//res.status(201).render(index.hbs)
 			res.redirect("/index")
-		
 	}catch(error){
 		res.status(400).send(error);
 	}
