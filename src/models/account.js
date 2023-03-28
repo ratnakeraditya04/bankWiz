@@ -4,7 +4,10 @@ const Account = new mongoose.Schema({
         type:String,
         required : true,
     },
-   
+    name:{
+        type:String,
+        required : true, 
+    },
     balance : {
         type:Number,
         default: 0

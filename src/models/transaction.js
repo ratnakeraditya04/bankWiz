@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Transaction = new mongoose.Schema({
   
     from : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'account'
+        type:String,
+        required : true,
     },
     to : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'account'
+        type:String,
+        required : true,
     },
     type:{
         type: String,
@@ -16,10 +16,6 @@ const Transaction = new mongoose.Schema({
     amount: {
         type: Number
     },
-    date: {
-        type: Date
-    }
-
 })
 const transaction = new mongoose.model("transaction", Transaction);
 module.exports = transaction;

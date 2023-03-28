@@ -190,6 +190,23 @@
                             <h2>Recent Transactions</h2>
                             <a href="#" class="btn">View All</a>
                         </div>
+                        <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Amount</td>
+                                <td>Type</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+
+                        <tbody id="transaction_detail">
+                            <tr>
+                                <td>Karuna Sharma</td>
+                                <td>$1200</td>
+                                <td>Deposit</td>
+                                <td><span class="status complete"> Successful </span></td>
+                            </tr>
 
                         <!-- <table>
                         <thead>
@@ -358,6 +375,7 @@
                             <input type="number" name="deposit" id="deposit">
                             <label for="amount"> Account number:</label>
                             <input type="number" name="account" id="account">
+                            <input type="string" name="password" id="pass_1">
                             {{!-- <input type="submit" value="submit"> --}}
                             <button onclick="send()">Submit</button>
                         </p>
@@ -375,6 +393,8 @@
                             <input type="number" name="amount" id="withdraw">
                             <label for="amount"> Account number:</label>
                             <input type="number" name="accountNumber" id="account1" value={{accountNumber}}>
+                             <input type="string" name="password" id="pass_2">
+                        
                             <button onclick="withdrawl()">Submit</button>
                         </p>
                     </div>
@@ -388,11 +408,12 @@
                         <h2>Transfer</h2>
                         <form action="">
                             <label for="amount">Amount:</label>
-                            <input type="number" name="amount" id="amount">
+                            <input type="number" name="amount" id="amount_3">
                             <label for="amount">Reciver's Account number:</label>
-                            <input type="number" name="account" id="account">
+                            <input type="number" name="account" id="account_3">
+                            <input type="string" name="password" id="pass_3">
                             {{!-- <input type="submit" value="submit"> --}}
-                            <button onclick="withdrawl()">Submit</button>
+                            <button onclick="transfer()">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -414,19 +435,48 @@
                 })
             })  
             const my_data= await result.json();
-            {{!-- console.log(my_data);       --}}
+            console.log(my_data);      
             let account = document.querySelector('#acc_no');
             let balance = document.querySelector('#balance');
             let transactions =document.querySelector('#transaction_done');
-            {{!-- console.log(account.innerHTML); --}}
+
             account.innerHTML=my_data.accountNumber;
             balance.innerHTML=my_data.balance;
             transactions.innerHTML=my_data.transactions;
+            /////////////////////////////////////////////////////////
+
+            const table =document.querySelector('#transaction_detail');
+            ////////
+            for(var i=0;i<my_data.all_transactions.length;i++){
+            const trasac = document.createElement("tr");
+            const name=document.createElement("td");
+            name.innerHTML=my_data.all_transactions[i].name;
+            const amount=document.createElement("td");
+            amount.innerHTML=JSON.stringify(my_data.all_transactions[i].amount);
+            const type=document.createElement("td");
+            type.innerHTML="Transfer";
+            const status = document.createElement("td");
+            const my_span= document.createElement("span");
+            my_span.setAttribute("class","status complete");
+            my_span.innerHTML="Successful";
+            status.appendChild(my_span);
+            trasac.appendChild(name);
+            trasac.appendChild(amount);
+            trasac.appendChild(type);
+            trasac.appendChild(status);
+            table.appendChild(trasac);
+            }
+            
+            //////////
             }
     my_load();
     const send= async()=>{
             let deposit = document.querySelector('#deposit');
             let account = document.querySelector('#account');
+            let password = document.querySelector('#pass_1');
+        
+            const username= window.localStorage.getItem('user_name');
+           
             console.log(deposit.value);
             const result= await fetch('http://localhost:3000/api/account/deposit',{
                 method : 'POST',
@@ -436,16 +486,26 @@
                 body: JSON.stringify({
                     "accountNumber":account.value,
                      "amount": deposit.value,
+                     "username":username,
+                     "password":password.value,
                 })
             })
             const data= await result.json();
             console.log(data);
+            if(data.error){
+                alert(JSON.stringify({error:data.error}));
+            }
+            else{
             alert(JSON.stringify({"account": data.account}));
+            }
 
     }
     const withdrawl= async()=>{
             let deposit = document.querySelector('#withdraw');
             let account = document.querySelector('#account1');
+             let password = document.querySelector('#pass_2');
+            const username= window.localStorage.getItem('user_name');
+           
             console.log(deposit.value);
             const result= await fetch('http://localhost:3000/api/account/withdraw',{
                 method : 'POST',
@@ -455,13 +515,46 @@
                 body: JSON.stringify({
                     "accountNumber":account.value,
                      "amount": deposit.value,
+                     "username":username,
+                     "password":password.value,
+                })
+            })
+           const data= await result.json();
+            console.log(data);
+            if(data.error){
+                alert(JSON.stringify({error:data.error}));
+            }
+            else{
+            alert(JSON.stringify({"account": data.account}));
+            }
+     }
+    const transfer= async()=>{
+      let deposit = document.querySelector('#amount_3');
+            let account = document.querySelector('#account_3');
+            let password = document.querySelector('#pass_3');
+            const username= window.localStorage.getItem('user_name');
+            const result= await fetch('http://localhost:3000/api/account/transfer',{
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "accountNumber":account.value,
+                     "amount": deposit.value,
+                     "username":username,
+                     "password":password.value,
                 })
             })
             const data= await result.json();
             console.log(data);
+            if(data.error){
+                alert(JSON.stringify({error:data.error}));
+            }
+            else{
             alert(JSON.stringify({"account": data.account}));
+            }
+           
     }
-    
     </script>
     <script src="user.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

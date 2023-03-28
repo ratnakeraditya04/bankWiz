@@ -60,7 +60,7 @@ app.post("/register", async(req,res) => {
 			const accountNum = 100000 + Math.floor(Math.random() * 900000);
 			const newAccount = new account({
 				accountNumber:accountNum,
-
+                name:req.body.name,
 			});
 			newAccount.save().then((newAccount)=>{
 				console.log(newAccount._id);
