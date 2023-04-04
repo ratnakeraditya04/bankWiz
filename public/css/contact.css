@@ -209,6 +209,20 @@ section .contact .contactform .formbox .inputbox input[type="submit"]
     max-width: 150px;
     padding: 12px;
 }
+
+button{
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    background: #271561;
+    color: #fff;
+    border: none;
+    max-width: 300px;
+    min-width: 150px;
+    padding: 12px;
+
+}
+
 section .contact .contactform .formbox .inputbox input[type="submit"]:hover{
     background-color: #ececff;
     color: black;

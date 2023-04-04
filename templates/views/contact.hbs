@@ -24,7 +24,7 @@
                   </li>
                   <li>
                     <span><img src="/images/mail.png" alt=""></span>
-                    <span>BankWiz@gmail.com</span>
+                    <span>bankwiz123@gmail.com</span>
                   </li>
                   <li>
                     <span><img src="/images/call.png" alt=""></span>
@@ -40,37 +40,58 @@
                 <li><a href="#"><img class="c" src="/images/3.png" alt=""></a></li>
             </ul>
             </div>
-            <form class="contactform" action = "/contact" method = "POST">
+            <form class="contactform" onsubmit = "sendEmail(); reset(); return false;"   > 
+            {{!-- onsubmit = "sendEmail(); reset(); return false;"  action = "/contact" method = "POST"--}}
               <h2>Send a Message</h2>
               <div class="formbox">
                 <div class="inputbox">
-                  <input type="text" name="first_name"  required>
+                  <input type="text" name="first_name" id = "first_name" required>
                   <span>First Name</span>
                 </div>
                 <div class="inputbox w50">
-                  <input type="text" name="last_name" required>
+                  <input type="text" name="last_name" id = "last_name" required>
                   <span>Last Name</span>
                 </div>
                 <div class="inputbox w50">
-                  <input type="text" name="email"  required>
+                  <input type="text" name="email" id = "email" required>
                   <span>Email Address</span>
                 </div>
                 <div class="inputbox w50">
-                  <input type="number" name="number" required>
+                  <input type="number" name="number" id = "number" required>
                   <span>Mobile Number</span>
                 </div>
                 <div class="inputbox w100">
-                  <textarea  name = "message" required></textarea>
+                  <textarea  name = "message" type = "message" id = "message" required></textarea>
                   <span>Write your message here...</span>
                 </div>
                 <div class="inputbox w100">
                     <a href="http://localhost:3000/index"> Home</a>
-                    <button>Send</button>
+                    <button type = "submit">Send</button>
                 </div>
               </div>
             </form>
           </div>
     </section>
+    <script src = "https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      function sendEmail(){
+        Email.send({
+          Host: "smtp.elasticemail.com",
+          Username :"bankwiz1234@gmail.com",
+          Password  :"CBC1BA9895B205694006BDECD1F5E0E7F3A9",
+          To: "harshgr441@gmail.com",
+          From : "bankwiz1234@gmail.com",
+          Subject: "Bankwiz Contact",
+          Body: "First Name : " + document.getElementById("first_name").value +
+                "<br> Last Name : " + document.getElementById("last_name").value +
+                "<br> Contact Number : " + document.getElementById("number").value +
+                "<br> Email : " + document.getElementById("email").value +
+                "<br> Message : " + document.getElementById("message").value 
+        }).then(
+          message => alert(message)
+        
+        );
+      }
+    </script>
 </body>
 </html>
-<!-- barmy6199@gmail.com  -->

@@ -22,10 +22,10 @@
         <!-- <p>My supercool header</p> -->
       </div>
       <div class="topnav">
-        <a href="#">Home</a>
+        <a href="http://localhost:3000">Home</a>
         <a href="#about">About</a>
         <a href="#">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="http://localhost:3000/contact">Contact</a>
       </div>
     </header>
     <div class="page">
@@ -113,12 +113,14 @@
     <!-- ================== loan ================= -->
     <div class="loan">
       <div class="form_loan">
-        <form action="/action_page.php">
+        <form action ="/loan" method = "POST">
+        <label for="anum">Account Number</label>
+    <input type="number" id="anum" name="accountNumber" placeholder="Account Number...">
           <label for="fname">Amount</label>
           <input
             type="number"
             id="fname"
-            name="firstname"
+            name="amount"
             placeholder="Loan amount..."
           />
 
@@ -126,12 +128,12 @@
           <input
             type="number"
             id="lname"
-            name="lastname"
+            name="years"
             placeholder="Number of years to repay..."
           />
 
           <label for="country">Type</label>
-          <select id="country" name="country">
+          <select id="country" name="type">
             <option value="Home">Home Loan</option>
             <option value="Education">Education Loan</option>
             <option value="Vehicle">Vehicle Loan</option>

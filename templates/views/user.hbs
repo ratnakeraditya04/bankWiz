@@ -57,6 +57,12 @@
                         <span class="title">Transfer</span>
                     </a>
                 </li>
+                <li>
+                    <a href="http://localhost:3000/loan" onclick="divVisibility('Div5');">
+                        <span class="icon"><ion-icon name="chatbox-outline"></ion-icon></ion-icon></span>
+                        <span class="title">Loan</span>
+                    </a>
+                </li>
 
                 <!-- <li>
                     <a href="">
@@ -162,7 +168,7 @@
                     <div class="card">
                         <div>
                             <div class="numbers" id="transaction_done">3</div>
-                            <div class="cardName">Transfers Done</div>
+                            <div class="cardName">Loan Taken</div>
                         </div>
 
                         <div class="iconBx">
@@ -190,7 +196,7 @@
                             <h2>Recent Transactions</h2>
                             <a href="#" class="btn">View All</a>
                         </div>
-                        <table>
+                     <table>
                         <thead>
                             <tr>
                                 <td>Name</td>
@@ -207,7 +213,6 @@
                                 <td>Deposit</td>
                                 <td><span class="status complete"> Successful </span></td>
                             </tr>
-
                         <!-- <table>
                         <thead>
                             <tr>
@@ -368,14 +373,15 @@
             <div id="Div3" style="display: none;">
                 <!-- <h1>helloooooooooooooooooooooo here is your transaction history</h1> -->
                 <div class="cardform">
-                    <div class="card">
+                       <div class="card">
                         <h2>How much Amount do you want to deposit?</h2>
                         <p>
                             <label for="amount"> Amount:</label>
                             <input type="number" name="deposit" id="deposit">
                             <label for="amount"> Account number:</label>
                             <input type="number" name="account" id="account">
-                            <input type="string" name="password" id="pass_1">
+                            <label for="amount"> Password:</label>
+                            <input type="string" name="Password" id="pass_1">
                             {{!-- <input type="submit" value="submit"> --}}
                             <button onclick="send()">Submit</button>
                         </p>
@@ -389,12 +395,12 @@
                     <div class="card">
                         <h2>How much Amount do you want to Withdraw?</h2>
                         <p>
-                            <label for="amount"> Amount</label>
-                            <input type="number" name="amount" id="withdraw">
+                            <label for="amount"> Amount:</label>
+                            <input type="number" name="withdraw" id="withdraw">
                             <label for="amount"> Account number:</label>
                             <input type="number" name="accountNumber" id="account1" value={{accountNumber}}>
-                             <input type="string" name="password" id="pass_2">
-                        
+                            <label for="amount"> Password:</label>
+                            <input type="string" name="password" id="pass_2">
                             <button onclick="withdrawl()">Submit</button>
                         </p>
                     </div>
@@ -404,13 +410,14 @@
             <div id="Div5" style="display: none;">
                 <!-- <h1>helloooooooooooooooooooooo here is your transaction history</h1> -->
                 <div class="cardform">
-                    <div class="card">
+                   <div class="card">
                         <h2>Transfer</h2>
                         <form action="">
                             <label for="amount">Amount:</label>
                             <input type="number" name="amount" id="amount_3">
                             <label for="amount">Reciver's Account number:</label>
                             <input type="number" name="account" id="account_3">
+                            <label for="amount"> Password:</label>
                             <input type="string" name="password" id="pass_3">
                             {{!-- <input type="submit" value="submit"> --}}
                             <button onclick="transfer()">Submit</button>

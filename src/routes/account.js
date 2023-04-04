@@ -72,7 +72,7 @@ router.post('/withdraw',async (req,res)=>{
                 { $inc: { balance: -1*amount } }, 
                 {new: true },
             )
-            const done = await transfer.save();
+           // const done = await balance.save();
             success = true;
             return res.status(200).json({success,account});
 
@@ -102,7 +102,7 @@ router.post('/transfer',async (req,res)=>{
                 type: "transfer",
                 amount: amount,
             })
-            const done = await transfer.save();
+            //const done = await transfer.save();
             console.log(done);
             
 
